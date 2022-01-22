@@ -1,0 +1,46 @@
+version: '3.9'
+
+services:
+  app:
+    image: 'backend-messaging-app:latest'
+    build:
+      context: ../../../
+      dockerfile: ./src/main/docker/Dockerfile
+    container_name: app
+    networks:
+      - common
+    depends_on:
+      - db
+      - queue
+    ports:
+      - 8080:8080
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/messaging
+      - SPRING_DATASOURCE_USERNAME=messaging
+      - SPRING_DATASOURCE_PASSWORD=messaging
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_RABBITMQ_HOST=queue
+
+  db:
+    image: 'postgres:14.1-alpine'
+    container_name: db
+    networks:
+      - common
+    ports:
+      - 5434:5432
+    environment:
+      - POSTGRES_DB=messaging
+      - POSTGRES_USER=messaging
+      - POSTGRES_PASSWORD=messaging
+
+  queue:
+    image: 'rabbitmq:3.9.12-management-alpine'
+    container_name: queue
+    networks:
+      - common
+    ports:
+      - 5672:5672
+      - 15672:15672
+networks:
+  common:
+    name: common_net
