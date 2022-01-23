@@ -11,10 +11,10 @@ import org.springframework.stereotype.Component;
 @RabbitListener(queues = "messaging-queue")
 public class MessagingReceiver {
 
-    Logger logger = LoggerFactory.getLogger(MessagingReceiver.class);
+  Logger logger = LoggerFactory.getLogger(MessagingReceiver.class);
 
-    @RabbitHandler
-    public void receive(MessageQueueDto message) {
-        logger.info("Received: '{}'", message);
-    }
+  @RabbitHandler
+  public void receive(MessageQueueDto message) {
+    logger.info("Received: '{}'", message);
+  }
 }

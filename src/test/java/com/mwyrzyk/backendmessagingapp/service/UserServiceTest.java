@@ -23,38 +23,39 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
 
-    @Mock
-    UserRepository userRepository;
+  @Mock
+  UserRepository userRepository;
 
-    @InjectMocks
-    UserService userService;
+  @InjectMocks
+  UserService userService;
 
-    @Test
-    public void shouldCreateUserSuccessfully() {
-        User userToSave = getUserWithNickname();
+  @Test
+  public void shouldCreateUserSuccessfully() {
+    User userToSave = getUserWithNickname();
 
-        when(userRepository.save(userToSave)).thenReturn(getUserWithIdAndNickname());
-        User createdUser = userService.createUser(userToSave);
+    when(userRepository.save(userToSave)).thenReturn(getUserWithIdAndNickname(1L));
+    User createdUser = userService.createUser(userToSave);
 
-        assertNotNull(createdUser.getId());
-        assertEquals(userToSave.getNickname(), createdUser.getNickname());
-    }
+    assertNotNull(createdUser.getId());
+    assertEquals(userToSave.getNickname(), createdUser.getNickname());
+  }
 
-    @Test
-    public void shouldFetchUserSuccessfully() {
-        User userToFetch = getUserWithId();
+  @Test
+  public void shouldFetchUserSuccessfully() {
+    User userToFetch = getUserWithId(1L);
 
-        when(userRepository.findById(any())).thenReturn(Optional.of(getUserWithIdAndNickname()));
-        User fetchedUser = userService.fetch(userToFetch);
+    when(userRepository.findById(any())).thenReturn(Optional.of(getUserWithIdAndNickname(1L)));
+    User fetchedUser = userService.fetch(userToFetch);
 
-        assertNotNull(fetchedUser.getNickname());
-        assertEquals(userToFetch.getId(), fetchedUser.getId());
-    }
-    @Test
-    public void shouldThrowExceptionWhenFetchingNoExistingUser() {
-        when(userRepository.findById(any())).thenReturn(Optional.empty());
+    assertNotNull(fetchedUser.getNickname());
+    assertEquals(userToFetch.getId(), fetchedUser.getId());
+  }
 
-        assertThrows(NotFoundException.class, () -> userService.fetch(getUserWithId()));
-    }
+  @Test
+  public void shouldThrowExceptionWhenFetchingNoExistingUser() {
+    when(userRepository.findById(any())).thenReturn(Optional.empty());
+
+    assertThrows(NotFoundException.class, () -> userService.fetch(getUserWithId(1L)));
+  }
 
 }

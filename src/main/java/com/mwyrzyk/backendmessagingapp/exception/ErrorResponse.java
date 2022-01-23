@@ -5,31 +5,31 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ErrorResponse {
 
-    public ErrorResponse() {
-    }
+  public ErrorResponse() {
+  }
 
-    public ErrorResponse(String status, String message) {
-        this.status = status;
-        this.message = message;
-    }
+  public ErrorResponse(String status, String message) {
+    this.status = status;
+    this.message = message;
+  }
 
-    private String status;
+  private String status;
 
-    private String message;
+  private String message;
 
-    public String getStatus() {
-        return status;
-    }
+  public String getStatus() {
+    return status;
+  }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+  public void setStatus(String status) {
+    this.status = status;
+  }
 
-    public String getMessage() {
-        return message;
-    }
+  public String getMessage() {
+    return message;
+  }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
+  public void setMessage(String message) {
+    this.message = message;
+  }
 }

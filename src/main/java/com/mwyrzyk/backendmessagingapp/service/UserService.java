@@ -8,19 +8,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-    private final UserRepository userRepository;
+  private final UserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+  public UserService(UserRepository userRepository) {
+    this.userRepository = userRepository;
+  }
 
-    public User createUser(User user) {
-        return userRepository.save(user);
-    }
+  public User createUser(User user) {
+    return userRepository.save(user);
+  }
 
-    public User fetch(User userToFetch) {
-        Long userToFetchId = userToFetch.getId();
-        return userRepository.findById(userToFetchId)
-                .orElseThrow(() -> new NotFoundException(String.format("User with id %d not found", userToFetchId)));
-    }
+  public User fetch(User userToFetch) {
+    Long userToFetchId = userToFetch.getId();
+    return userRepository.findById(userToFetchId)
+        .orElseThrow(() -> new NotFoundException(String.format("User with id %d not found", userToFetchId)));
+  }
 }

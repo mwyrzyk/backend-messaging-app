@@ -23,35 +23,35 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(UserController.class)
 public class UserControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+  @Autowired
+  private MockMvc mockMvc;
 
-    @MockBean
-    private UserService userService;
+  @MockBean
+  private UserService userService;
 
-    @Test
-    public void shouldReturnUser() throws Exception {
-        when(userService.createUser(any(User.class))).thenReturn(getUserWithIdAndNickname());
+  @Test
+  public void shouldReturnUser() throws Exception {
+    when(userService.createUser(any(User.class))).thenReturn(getUserWithIdAndNickname(1L));
 
-        createUser(getValidUserRequestDto())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").exists())
-                .andExpect(jsonPath("$.nickname").value("test"));
+    createUser(getValidUserRequestDto())
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.id").exists())
+        .andExpect(jsonPath("$.nickname").value("test"));
 
-    }
+  }
 
-    @Test
-    public void shouldThrowExceptionWhenNicknameIsNotProvided() throws Exception {
-        createUser(new UserRequestDto())
-                .andExpect(status().is4xxClientError());
-    }
+  @Test
+  public void shouldThrowExceptionWhenNicknameIsNotProvided() throws Exception {
+    createUser(new UserRequestDto())
+        .andExpect(status().is4xxClientError());
+  }
 
-    private ResultActions createUser(UserRequestDto userDto) throws Exception {
-        return mockMvc.perform(
-                MockMvcRequestBuilders.post("/v1/users")
-                        .content(new ObjectMapper().writeValueAsString(userDto))
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON)
-        );
-    }
+  private ResultActions createUser(UserRequestDto userDto) throws Exception {
+    return mockMvc.perform(
+        MockMvcRequestBuilders.post("/v1/users")
+            .content(new ObjectMapper().writeValueAsString(userDto))
+            .contentType(MediaType.APPLICATION_JSON)
+            .accept(MediaType.APPLICATION_JSON)
+    );
+  }
 }
