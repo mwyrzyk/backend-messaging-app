@@ -8,35 +8,35 @@ import javax.validation.constraints.NotNull;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class MessageRequestDto {
 
-    @NotEmpty
-    private String content;
+  @NotEmpty
+  private String content;
 
-    @NotNull
-    private Long receiverId;
+  @NotNull
+  private Long receiverId;
 
-    private Long senderId;
+  private Long senderId;
 
-    public String getContent() {
-        return content;
-    }
+  public String getContent() {
+    return content;
+  }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+  public void setContent(String content) {
+    this.content = content;
+  }
 
-    public Long getSenderId() {
-        return senderId;
-    }
+  public Long getSenderId() {
+    return senderId;
+  }
 
-    public void setSenderId(Long senderId) {
-        this.senderId = senderId;
-    }
+  public void setSenderId(Long senderId) {
+    this.senderId = senderId;
+  }
 
-    public Long getReceiverId() {
-        return receiverId;
-    }
+  public Long getReceiverId() {
+    return receiverId;
+  }
 
-    public void setReceiverId(Long receiverId) {
-        this.receiverId = receiverId;
-    }
+  public void setReceiverId(Long receiverId) {
+    this.receiverId = receiverId;
+  }
 }

@@ -7,24 +7,24 @@ import javax.validation.constraints.NotEmpty;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserResponseDto {
 
-    Long id;
+  Long id;
 
-    @NotEmpty
-    String nickname;
+  @NotEmpty
+  String nickname;
 
-    public Long getId() {
-        return id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public String getNickname() {
-        return nickname;
-    }
+  public String getNickname() {
+    return nickname;
+  }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
+  public void setNickname(String nickname) {
+    this.nickname = nickname;
+  }
 }

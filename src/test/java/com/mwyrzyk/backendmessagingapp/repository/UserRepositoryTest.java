@@ -19,41 +19,41 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 public class UserRepositoryTest {
 
-    @Autowired
-    UserRepository userRepository;
+  @Autowired
+  UserRepository userRepository;
 
-    @Test
-    public void shouldSaveUserSuccessfully() {
-        User userToSave = getUserWithNickname();
+  @Test
+  public void shouldSaveUserSuccessfully() {
+    User userToSave = getUserWithNickname();
 
-        User createdUser = userRepository.save(userToSave);
+    User createdUser = userRepository.save(userToSave);
 
-        assertNotNull(createdUser.getId());
-        assertEquals(userToSave.getNickname(), createdUser.getNickname());
-    }
+    assertNotNull(createdUser.getId());
+    assertEquals(userToSave.getNickname(), createdUser.getNickname());
+  }
 
-    @Test
-    public void shouldGenerateUniqueIdForEachUser() {
-        User firstUserToSave = getUserWithNickname();
-        User secondUserToSave = getUserWithNickname();
-
-
-        User firstCreatedUser = userRepository.save(firstUserToSave);
-        User secondCreatedUser = userRepository.save(secondUserToSave);
-
-        assertNotEquals(firstCreatedUser.getId(), secondCreatedUser.getId());
-    }
-
-    @Test
-    public void shouldCreateUserSuccessfullyWithRepeatedNickname() {
-        User firstUserToSave = getUserWithNickname();
-        User secondUserToSave = getUserWithNickname();
+  @Test
+  public void shouldGenerateUniqueIdForEachUser() {
+    User firstUserToSave = getUserWithNickname();
+    User secondUserToSave = getUserWithNickname();
 
 
-        User firstCreatedUser = userRepository.save(firstUserToSave);
-        User secondCreatedUser = userRepository.save(secondUserToSave);
+    User firstCreatedUser = userRepository.save(firstUserToSave);
+    User secondCreatedUser = userRepository.save(secondUserToSave);
 
-        assertEquals(firstCreatedUser.getNickname(), secondCreatedUser.getNickname());
-    }
+    assertNotEquals(firstCreatedUser.getId(), secondCreatedUser.getId());
+  }
+
+  @Test
+  public void shouldCreateUserSuccessfullyWithRepeatedNickname() {
+    User firstUserToSave = getUserWithNickname();
+    User secondUserToSave = getUserWithNickname();
+
+
+    User firstCreatedUser = userRepository.save(firstUserToSave);
+    User secondCreatedUser = userRepository.save(secondUserToSave);
+
+    assertEquals(firstCreatedUser.getNickname(), secondCreatedUser.getNickname());
+  }
 
 }

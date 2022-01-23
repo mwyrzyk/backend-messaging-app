@@ -34,10 +34,10 @@ Request body example:
     "receiverId": 1
 }
 ```
-`curl -i -X POST http://localhost:8080/v1/messages -H "Content-Type:application/json" -H "Sender-Id:1" -d "{\"content\": \"Hello, user!\", \"receiverId\": 2}"`
+`curl -i -X POST http://localhost:8080/v1/messages -H "Content-Type:application/json" -H "User-Id:1" -d "{\"content\": \"Hello, user!\", \"receiverId\": 2}"`
 
-### List messages :soon:
-Endpoint to send message from one user to another.
+### List messages :heavy_check_mark:
+Endpoint to list messages of authenticated user.
 
 HTTP REQUEST GET http://localhost:8080/v1/messages
 
@@ -49,6 +49,8 @@ senderId
 | senderId    | _any user id_   |
 | status      | sent, received  |
 
-`curl -i -X GET http://localhost:8080/v1/messages -H "Sender-Id:1"`
+`curl -i -X GET http://localhost:8080/v1/messages?status=received -H "User-Id:1"`
+`curl -i -X GET http://localhost:8080/v1/messages?status=sent -H "User-Id:1"`
+`curl -i -X GET http://localhost:8080/v1/messages?status=sent&senderId=2 -H "User-Id:1"`
 
 ### Integration tests :soon:

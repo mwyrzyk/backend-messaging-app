@@ -7,9 +7,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MessagingQueueConfiguration {
 
-    @Bean
-    public Queue messagingQueue() {
-        return new Queue("messaging-queue");
-    }
+  @Bean
+  public Queue messagingQueue() {
+    return new Queue("messaging-queue");
+  }
 
 }
