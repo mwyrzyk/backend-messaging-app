@@ -50,7 +50,9 @@ senderId
 | status      | sent, received  |
 
 `curl -i -X GET http://localhost:8080/v1/messages?status=received -H "User-Id:1"`
+
 `curl -i -X GET http://localhost:8080/v1/messages?status=sent -H "User-Id:1"`
+
 `curl -i -X GET http://localhost:8080/v1/messages?status=sent&senderId=2 -H "User-Id:1"`
 
 ### Integration tests :soon:
