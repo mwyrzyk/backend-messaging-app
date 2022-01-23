@@ -6,6 +6,8 @@ Backend for messaging application.
 
 **Run command:** `./gradlew composeUp (Linux, Mac)` or `gradlew.bat composeUp (Windows)`
 
+**Stop command:** `./gradlew composeDown (Linux, Mac)` or `gradlew.bat composeDown (Windows)`
+
 ## Documentation
 
 ### Create user :heavy_check_mark:
